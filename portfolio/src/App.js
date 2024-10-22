@@ -98,10 +98,10 @@ const skillsData = {
     { id: "Data Integration", group: 5 },
 
     { id: "Web Technologies", group: 1 },
-    { id: "React", group: 6 },
+    { id: "React", group: 11 },
     { id: "Node.js", group: 6 },
     { id: "Express", group: 6 },
-    { id: "Next.js", group: 6 },
+    { id: "Next.js", group: 11 },
 
     { id: "APIs and Data Formats", group: 1 },
     { id: "RESTful API", group: 7 },
@@ -383,16 +383,17 @@ const App = () => {
 
     // Set node color based on group, with same color for leaf nodes
     const groupColors = {
-      1: "#ff7f0e", // Orange for group 1
-      2: "#1f77b4", // Blue for group 2
-      3: "#2ca02c", // Green for group 3
-      4: "#d62728", // Red for group 4
-      5: "#9467bd", // Purple for group 5
-      6: "#8c564b", // Brown for group 6
-      7: "#e377c2", // Pink for group 7
-      8: "#7f7f7f", // Grey for group 8
-      9: "#bcbd22", // Olive for group 9
+      1: "#db7c26", // Orange for group 1
+      2: "#0077b6", // Blue for group 2
+      3: "#6a994e", // Green for group 3
+      4: "#c32f27", // Red for group 4
+      5: "#9b5de5", // Purple for group 5
+      6: "#52b788", // Brown for group 6
+      7: "#f15bb5", // Pink for group 7
+      8: "#a9abb5", // Grey for group 8
+      9: "#ffca3a", // Olive for group 9
       10: "#17becf", // Teal for group 10
+      11: "#a1cca5", // Olive for group 11
     };
 
     const nodeColor = groupColors[node.group] || "black"; // Default to black
