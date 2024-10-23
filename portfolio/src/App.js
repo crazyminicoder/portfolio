@@ -371,7 +371,7 @@ const App = () => {
           <Center>
             <Box
               width="100%"
-              height="65vh"
+              height="75vh"
               overflow="hidden"
               display="flex"
               alignItems="center"
