@@ -51,10 +51,10 @@ const Navbar = () => {
   // Navbar links with spectrum colors
   const navLinks = [
     { label: "Home", to: "main-section", color: spectrumColors[0] },
-    { label: "About", to: "about-footer", color: spectrumColors[2] },
     { label: "Projects", to: "projects-section", color: spectrumColors[4] },
     { label: "Skills", to: "skills-section", color: spectrumColors[6] },
     { label: "Blog", to: "contributions-section", color: spectrumColors[8] },
+    { label: "About", to: "about-footer", color: spectrumColors[2] },
     { label: "AI Tools", to: "ai-tools-section", color: spectrumColors[11] },
   ];
 

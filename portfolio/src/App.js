@@ -359,7 +359,7 @@ const App = () => {
           <Center>
             <Box
               width="100%"
-              height="100%"
+              height="65vh"
               overflow="hidden"
               display="flex"
               alignItems="center"
@@ -419,7 +419,7 @@ const App = () => {
 
       {/* Contributions Section */}
       <Element name="contributions-section">
-        <Box bg="#1A1A1A" color="white" py="20" px="10" height="50dvh">
+        <Box bg="#1A1A1A" color="white" py="20" px="10"  minHeight="50vh">
           <Flex justifyContent="center" mb="8">
             <Text fontSize="6xl" fontWeight="bold">
               Contributions
