@@ -56,15 +56,27 @@ const projects = [
 ];
 
 // Example mock data for contributions
-const mockContributions = [
-  { date: '2024-10-01', count: 5 },
-  { date: '2024-10-02', count: 2 },
-  { date: '2024-10-03', count: 0 },
-  { date: '2024-10-04', count: 8 },
-  { date: '2024-10-05', count: 1 },
-  { date: '2024-10-06', count: 4 },
-  { date: '2024-10-23', count: 8 },
-];
+const generateRandomContributions = (startDate, endDate) => {
+  const contributions = [];
+  const currentDate = new Date(startDate);
+
+  while (currentDate <= endDate) {
+    const dateStr = currentDate.toISOString().split('T')[0];
+    const count = Math.floor(Math.random() * 10); // Random count between 0 and 9
+    contributions.push({ date: dateStr, count });
+
+    // Move to the next day
+    currentDate.setDate(currentDate.getDate() + 1);
+  }
+
+  return contributions;
+};
+
+const startDate = new Date('2024-01-01');
+const endDate = new Date('2024-10-23');
+
+const mockContributions = generateRandomContributions(startDate, endDate);
+
 
 const skillsData = {
   nodes: [

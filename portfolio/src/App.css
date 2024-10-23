@@ -50,19 +50,19 @@
 }
 
 .color-scale-1 {
-  fill: #ffc971; /* Light green for low contributions */
+  fill: #caf0f8; /* Light green for low contributions */
 }
 
 .color-scale-2 {
-  fill: #ffb627; /* Medium green for moderate contributions */
+  fill: #90e0ef; /* Medium green for moderate contributions */
 }
 
 .color-scale-3 {
-  fill: #ff9505; /* Dark green for high contributions */
+  fill: #00b4d8; /* Dark green for high contributions */
 }
 
 .color-scale-4 {
-  fill: #cc5803; /* Darkest green for the most contributions */
+  fill: #023e8a; /* Darkest green for the most contributions */
 }
 
 .react-calendar-heatmap .color-empty {
