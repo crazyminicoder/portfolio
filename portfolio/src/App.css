@@ -36,3 +36,42 @@
     transform: rotate(360deg);
   }
 }
+
+.slick-dots li button:before {
+  color: #FFFDD0 !important; /* Cream color */
+}
+
+.slick-dots li.slick-active button:before {
+  color: #FFFDD0 !important; /* Cream color for active dot */
+}
+
+.color-empty {
+  fill: var(--color-empty, #161B22); /* Default to #161B22 */
+}
+
+.color-scale-1 {
+  fill: #ffc971; /* Light green for low contributions */
+}
+
+.color-scale-2 {
+  fill: #ffb627; /* Medium green for moderate contributions */
+}
+
+.color-scale-3 {
+  fill: #ff9505; /* Dark green for high contributions */
+}
+
+.color-scale-4 {
+  fill: #cc5803; /* Darkest green for the most contributions */
+}
+
+.react-calendar-heatmap .color-empty {
+  fill: #212529 !important;
+}
+
+
+/* Add padding around the boxes for better spacing */
+.react-calendar-heatmap rect {
+  rx: 2; /* Optional: rounded corners */
+  ry: 2; /* Optional: rounded corners */
+}

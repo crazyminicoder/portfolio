@@ -7,6 +7,7 @@ import {
   Image,
   useDisclosure,
 } from "@chakra-ui/react";
+import { Link as ScrollLink } from "react-scroll"; // Import Link from react-scroll
 import aiLogo from "./images/ailogo.png"; // Import the AI logo
 import mainLogo from "./images/mylogo.png"; // Import the main logo
 
@@ -49,12 +50,12 @@ const Navbar = () => {
 
   // Navbar links with spectrum colors
   const navLinks = [
-    { label: "Home", href: "#home", color: spectrumColors[0] },
-    { label: "About", href: "#about", color: spectrumColors[2] },
-    { label: "Projects", href: "#projects", color: spectrumColors[4] },
-    { label: "Skills", href: "#skills", color: spectrumColors[6] },
-    { label: "Blog", href: "#blog", color: spectrumColors[8] },
-    { label: "AI Tools", href: "#ai-tools", color: spectrumColors[11] },
+    { label: "Home", to: "main-section", color: spectrumColors[0] },
+    { label: "About", to: "about-footer", color: spectrumColors[2] },
+    { label: "Projects", to: "projects-section", color: spectrumColors[4] },
+    { label: "Skills", to: "skills-section", color: spectrumColors[6] },
+    { label: "Blog", to: "contributions-section", color: spectrumColors[8] },
+    { label: "AI Tools", to: "ai-tools-section", color: spectrumColors[11] },
   ];
 
   return (
@@ -70,7 +71,7 @@ const Navbar = () => {
         alignItems="center"
         justifyContent="center"
         px="4"
-        bg="rgba(0, 0, 0)" // Black shade with 0.7 transparency
+        bg="rgba(0, 0, 0, 0.7)" // Black shade with 0.7 transparency
         backdropFilter="blur(10px)" // Frosted glass effect
         zIndex="1000"
         boxShadow="sm"
@@ -89,21 +90,25 @@ const Navbar = () => {
         {/* Center Links with Spectrum Hover Effect */}
         <Flex gap="10" alignItems="center">
           {navLinks.map((link, index) => (
-            <Link
+            <ScrollLink
               key={index}
-              href={link.href}
-              fontSize="lg"
-              fontWeight="bold"
-              color={activeLink === link.label ? link.color : "white"} // Active link color
-              _hover={{
-                color: link.color,
-                textDecoration: "none", // Removes underline on hover
+              to={link.to}
+              smooth={true}
+              duration={500}
+              spy={true}
+              offset={-60}
+              className="nav-link"
+              onSetActive={() => setActiveLink(link.label)}
+              style={{
+                color: activeLink === link.label ? link.color : "white",
+                fontWeight: "bold",
+                fontSize: "lg",
+                cursor: "pointer",
+                transition: "color 0.3s ease",
               }}
-              transition="color 0.3s ease" // Smooth color transition
-              onClick={() => setActiveLink(link.label)} // Set active link
             >
               {link.label}
-            </Link>
+            </ScrollLink>
           ))}
 
           {/* AI Assistant Logo next to links */}
