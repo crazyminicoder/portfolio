@@ -26,19 +26,8 @@ db.once('open', () => {
   console.log('Connected to MongoDB');
 });
 
-// Define a schema for projects
-const projectSchema = new mongoose.Schema({
-  title: String,
-  description: String,
-  imageUrl: String,
-  technologies: [String],
-});
 
 
-
-// Define a model for projects
-//const Project = mongoose.model('projects', projectSchema);
-//const SkillsData = mongoose.model('skillsdatas',SkillsDataSchema);
 // Route to get all projects from 'projects' collection
 app.get('/projects', async (req, res) => {
   try {

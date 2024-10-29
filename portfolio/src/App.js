@@ -27,12 +27,17 @@ import projectImage1 from './images/w1.jpg';
 import projectImage2 from './images/w1.png';
 import projectImage3 from './images/w2.png';
 import projectImage4 from './images/w3.png';
+import mypic from './images/mypic.png';
+import { FaLinkedin, FaGithub, FaInstagram, FaYoutube } from "react-icons/fa";
 
 const imageMapping = {
   projectImage1: projectImage1,
   projectImage2: projectImage2,
   projectImage3: projectImage3,
   projectImage4: projectImage4,
+  projectImage5: projectImage3,
+  projectImage6: projectImage2,
+  projectImage7: projectImage4,
 };
 
 // Carousel settings
@@ -84,7 +89,20 @@ const App = () => {
   const graphRef = useRef();
   const [projects, setProjects] = useState([]);
   const [skillsData, setSkillsData] = useState({ nodes: [], links: [] });
+  const [graphDimensions, setGraphDimensions] = useState({ width: window.innerWidth * 1, height: 950});
 
+  useEffect(() => {
+    const updateGraphDimensions = () => {
+      setGraphDimensions({
+        width: window.innerWidth * 0.80,
+        height: window.innerHeight * 0.6,
+      });
+    };
+  
+    window.addEventListener('resize', updateGraphDimensions);
+    return () => window.removeEventListener('resize', updateGraphDimensions);
+  }, []);
+  
   // Fetch projects from the backend
   useEffect(() => {
     const getProjects = async () => {
@@ -160,11 +178,15 @@ const App = () => {
       {/* Main Section */}
       <Element name="main-section">
         <Flex h="100vh" mt="60px" bg="#1A1A1A">
-          <Box flex="1" display="flex" alignItems="center" justifyContent="center" bg="#1A1A1A" width="50%" height="100%">
-            <Text fontSize="4xl" fontWeight="bold" color="white">
-              Left Section
-            </Text>
-          </Box>
+        <Box flex="1" display="flex" alignItems="center" justifyContent="center" bg="#1A1A1A" width="75%" height="100%">
+  <Image 
+    src={mypic} 
+    alt="Description of the image" 
+    maxWidth="550x" 
+    maxHeight="550px" 
+    objectFit="contain" 
+  />
+</Box>
           <Box flex="1" display="flex" flexDirection="column" alignItems="center" justifyContent="center" bg="#1A1A1A" width="50%" height="100%">
             <Text fontSize="4xl" fontWeight="semibold" color="rgba(220, 220, 220, 0.8)" mb="1">
               I AM
@@ -183,44 +205,80 @@ const App = () => {
       </Element>
 
       {/* Projects Section */}
-      <Element name="projects-section">
-        <Box bg="#121212" color="white" py="25" px="3" height="55dvh">
-          <Flex justifyContent="center" mb="8">
-            <Text fontSize="6xl" fontWeight="bold" color="#FFFDD0" pb="15">
-              Projects
-            </Text>
-          </Flex>
+<Element name="projects-section">
+  <Box bg="#121212" color="white" py="25" px="3" height="60dvh">
+    <Flex justifyContent="center" mb="8">
+      <Text fontSize="6xl" fontWeight="bold" color="#FFFDD0" pb="15">
+        Projects
+      </Text>
+    </Flex>
 
-          {projects.length > 0 ? (
-            <SliderCarousel {...carouselSettings}>
-              {projects.map((project, index) => (
-                <Box key={index} bg="gray.800" borderRadius="md" overflow="hidden" w="80%" mx="4" cursor="pointer" position="relative" height="262px" _hover={{ height: "450px" }} display="flex" flexDirection="column" transition="height 0.4s ease">
-                  <Image src={imageMapping[project.imageUrl]} alt={project.title} w="100%" h="200px" objectFit="cover" borderTopRadius="md" />
-                  <Flex p="4" justifyContent="center" alignItems="center" bg="gray.900">
-                    <Text fontSize="xl" fontWeight="bold" color="white">
-                      {project.title}
-                    </Text>
-                  </Flex>
-                  <Text fontSize="md" mb="2" textAlign="center" color="white" py="25">
-                    {project.description}
-                  </Text>
-                  <Flex gap="2" mt="2" wrap="wrap" justifyContent="center" pb="25">
-                    {project.technologies.map((tech, idx) => (
-                      <Box key={idx} p="1" bg="gray.600" borderRadius="md" fontSize="sm" color="white">
-                        {tech}
-                      </Box>
-                    ))}
-                  </Flex>
-                </Box>
-              ))}
-            </SliderCarousel>
-          ) : (
-            <Center>
-              <Text fontSize="2xl" color="gray.400">No projects available</Text>
-            </Center>
-          )}
-        </Box>
-      </Element>
+    {projects.length > 0 ? (
+      <SliderCarousel {...carouselSettings}>
+        {projects.map((project, index) => (
+          <a
+            key={index}
+            href={project.link}
+            target="_blank"
+            rel="noopener noreferrer"
+            style={{ textDecoration: 'none' }}
+          >
+            <Box
+              bg="gray.800"
+              borderRadius="md"
+              overflow="hidden"
+              w="88%"
+              mx="2"
+              cursor="pointer"
+              position="relative"
+              height="262px"
+              _hover={{ height: "525px" }}
+              display="flex"
+              flexDirection="column"
+              transition="height 0.4s ease"
+            >
+              <Image
+                src={imageMapping[project.imageUrl]}
+                alt={project.title}
+                w="100%"
+                h="200px"
+                objectFit="cover"
+                borderTopRadius="md"
+              />
+              <Flex p="4" justifyContent="center" alignItems="center" bg="gray.900">
+                <Text fontSize="xl" fontWeight="bold" color="white">
+                  {project.title}
+                </Text>
+              </Flex>
+              <Text fontSize="md" mb="2" textAlign="center" color="white" py="25">
+                {project.description}
+              </Text>
+              <Flex gap="2" mt="2" wrap="wrap" justifyContent="center" pb="25">
+                {project.technologies.map((tech, idx) => (
+                  <Box
+                    key={idx}
+                    p="1"
+                    bg="gray.600"
+                    borderRadius="md"
+                    fontSize="sm"
+                    color="white"
+                  >
+                    {tech}
+                  </Box>
+                ))}
+              </Flex>
+            </Box>
+          </a>
+        ))}
+      </SliderCarousel>
+    ) : (
+      <Center>
+        <Text fontSize="2xl" color="gray.400">No projects available</Text>
+      </Center>
+    )}
+  </Box>
+</Element>
+
 
       {/* Skills Section */}
       <Element name="skills-section">
@@ -300,8 +358,8 @@ const App = () => {
                   ctx.fillText(label, node.x, node.y);
                 }}
                 nodeCanvasObjectMode={() => "after"}
-                width={window.innerWidth - 1000}
-                height={1000}
+                width={graphDimensions.width}
+  height={graphDimensions.height}
                 style={{ backgroundColor: "white" }}
               />
             </Box>
@@ -347,24 +405,73 @@ const App = () => {
 
       {/* Footer Section */}
       <Element name="about-footer">
-        <Box color="white" py="20" mt="20" height="25dvh">
-          <Center>
-            <Text fontSize="2xl" fontWeight="bold">
-              Footer Section
-            </Text>
-          </Center>
-          <Center mt="4">
-            <Text fontSize="lg">
-              &copy; 2024 Syed Wali | All Rights Reserved.
-            </Text>
-          </Center>
-          <Center mt="4">
-            <Text fontSize="md" color="gray.400">
-              Follow me on: LinkedIn | GitHub | Twitter
-            </Text>
-          </Center>
-        </Box>
-      </Element>
+  <Box bg="#1A1A1A" color="white" py="20" mt="20" px="10">
+    <Flex justifyContent="space-between" flexWrap="wrap" alignItems="center" mb="8">
+      {/* Footer Logo & Description */}
+      <Box mb="6" maxW="300px">
+        <Text fontSize="2xl" fontWeight="bold" mb="2">Syed Wali</Text>
+        <Text fontSize="md" color="gray.400">
+          Passionate Full Stack Developer & AI Enthusiast dedicated to crafting innovative solutions that make a difference.
+        </Text>
+      </Box>
+
+      {/* Quick Links */}
+      <Box mb="6" minW="200px">
+  <Text fontSize="xl" fontWeight="semibold" mb="3">Quick Links</Text>
+  <Flex flexDirection="column" gap="2">
+    <ScrollLink to="main-section" smooth duration={500} className="nav-link" style={{ cursor: 'pointer' }}>
+      Home
+    </ScrollLink>
+    <ScrollLink to="projects-section" smooth duration={500} className="nav-link" style={{ cursor: 'pointer' }}>
+      Projects
+    </ScrollLink>
+    <ScrollLink to="skills-section" smooth duration={500} className="nav-link" style={{ cursor: 'pointer' }}>
+      Skills
+    </ScrollLink>
+    <ScrollLink to="contributions-section" smooth duration={500} className="nav-link" style={{ cursor: 'pointer' }}>
+      Contributions
+    </ScrollLink>
+  </Flex>
+</Box>
+
+      {/* Social Media Links */}
+      <Box mb="6" minW="200px">
+        <Text fontSize="xl" fontWeight="semibold" mb="3">Follow Me</Text>
+        <Flex gap="4">
+          <a href="https://www.linkedin.com/in/syed-wali-uddin-quadri-8124b41b7/" target="_blank" rel="noopener noreferrer">
+          <FaLinkedin size="30px" color="#0e76a8" />
+          </a>
+          <a href="https://github.com/crazyminicoder" target="_blank" rel="noopener noreferrer">
+          <FaGithub size="30px" color="white" />
+          </a>
+          <a href="https://www.instagram.com/one_and_only_wali/" target="_blank" rel="noopener noreferrer">
+          <FaInstagram size="30px" color="#E1306C" />
+          </a>
+          <a href="https://www.youtube.com/@wasserkopf4200" target="_blank" rel="noopener noreferrer">
+          <FaYoutube size="30px" color="#FF0000" />
+          </a>
+        </Flex>
+      </Box>
+
+      {/* Contact Info */}
+      <Box mb="6" minW="200px">
+        <Text fontSize="xl" fontWeight="semibold" mb="3">Contact Info</Text>
+        <Flex flexDirection="column" gap="1">
+          <Text fontSize="md">Email: waliwasser29@gmail.com</Text>
+          <Text fontSize="md">Location: Chicago, IL, USA</Text>
+        </Flex>
+      </Box>
+    </Flex>
+
+    {/* Copyright Section */}
+    <Center mt="8">
+      <Text fontSize="sm" color="gray.500">
+        &copy; 2024 Syed Wali | All Rights Reserved.
+      </Text>
+    </Center>
+  </Box>
+</Element>
+
     </ChakraProvider>
   );
 };

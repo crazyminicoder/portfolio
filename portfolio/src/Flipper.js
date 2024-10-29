@@ -65,8 +65,8 @@ const Flipper = ({ words, onFlipperStateChange }) => {
         {displayedChars.map((char, index) => (
           <Box
             key={index}
-            w="2.5rem"
-            h="3rem"
+            w="2.9rem"
+            h="3.4rem"
             bg="#0D0D0D"
             mx="0.1rem"
             display="flex"
