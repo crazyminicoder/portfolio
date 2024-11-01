@@ -12,18 +12,17 @@ app.use(express.json());
 app.use(cors());
 
 // MongoDB connection URI
-const MONGODB_URI = 'mongodb://localhost:27017/myportfolio';
+const MONGODB_URI = '';
+
 
 // Connect to MongoDB
-mongoose.connect(MONGODB_URI, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-});
+mongoose.connect(MONGODB_URI);
 
 const db = mongoose.connection;
 db.on('error', console.error.bind(console, 'Connection error:'));
 db.once('open', () => {
-  console.log('Connected to MongoDB');
+  console.log('Connected to MongoDB Atlas');
+  console.log(`Using database: ${db.name}`);
 });
 
 

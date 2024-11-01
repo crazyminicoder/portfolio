@@ -108,7 +108,7 @@ const App = () => {
     const getProjects = async () => {
       try {
         const data = await fetchProjects();
-        console.log('Fetched projects:', data); // Debugging
+        //console.log('Fetched projects:', data); // Debugging
         setProjects(data);
       } catch (error) {
         console.error('Error in fetching projects:', error);
@@ -123,7 +123,7 @@ const App = () => {
       try {
         const response = await fetch('http://localhost:5000/skillsdata');
         const data = await response.json();
-        console.log('Fetched skillsData:', data); // Debugging
+        //console.log('Fetched skillsData:', data); // Debugging
 
         if (data && data.nodes && data.links) {
           setSkillsData({ nodes: data.nodes, links: data.links });

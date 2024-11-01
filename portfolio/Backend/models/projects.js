@@ -8,4 +8,4 @@ const projectSchema = new mongoose.Schema({
     link: String,
   });
   
-  module.exports = mongoose.model('projectsv2', projectSchema);//collection_name , schema
+  module.exports = mongoose.model('projects', projectSchema);//collection_name , schema
