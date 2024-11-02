@@ -12,7 +12,7 @@ app.use(express.json());
 app.use(cors());
 
 // MongoDB connection URI
-const MONGODB_URI = '';
+const MONGODB_URI = 'mongodb+srv://syedwali:PFuh78MM-E9dUFE@serverlessinstance0.lfz2ubd.mongodb.net/myportfolio?retryWrites=true&w=majority';
 
 
 // Connect to MongoDB
